@@ -1,5 +1,6 @@
-Bobfolio is a simple attempt to trim down my personal portfolio and
-convert it into a little Sinatra web app for easy use with Heroku.
+Bobfolio is a simple Sinatra web app for your computer programming
+portfolio.  You can deploy it to Heroku and have a free portfolio up
+and running within about 15 minutes if installing Ruby goes well.
 
 INSTALLING BOBFOLIO:
 
@@ -11,9 +12,10 @@ Next, "git clone git://github.com/noahgibbs/bobfolio.git ".  That will
 make a bobfolio directory for you to edit your new copy.
 
 You'll need to install Ruby.  If you install Ruby 1.8.X instead of
-1.9.X, you'll also need to install RubyGems.
+1.9.X, you'll also need to install RubyGems.  (How do you install
+Ruby?  Google something like "install ruby MyOperatingSystem")
 
-Afterward, you'll need to install other gems:
+Afterward, you can use those to install other requirements:
 
   gem install bundler
   bundle install
@@ -60,3 +62,8 @@ Now deploy to heroku:
 That's it!  Go to http://myappname.heroku.com or whatever your
 actual Heroku app name is.  You should see your new portfolio,
 accessible to all on the big ol' Internet.  Welcome to the future.
+
+TROUBLESHOOTING
+
+Did you have trouble with Heroku accepting your ssh key?  Run
+"heroku keys:add", then try it again.
