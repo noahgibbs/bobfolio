@@ -57,6 +57,6 @@ Now deploy to heroku:
 
   git push heroku master
 
-That's it!  Go to "http://myappname.heroku.com" or whatever your
+That's it!  Go to "http://myappname.heroku.com/" or whatever your
 actual Heroku app name is.  You should see your new portfolio,
 accessible to all on the big ol' Internet.  Welcome to the future.
