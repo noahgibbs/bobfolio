@@ -65,5 +65,8 @@ accessible to all on the big ol' Internet.  Welcome to the future.
 
 TROUBLESHOOTING
 
-Did you have trouble with Heroku accepting your ssh key?  Run
+* Did you have trouble with Heroku accepting your ssh key?  Run
 "heroku keys:add", then try it again.
+
+* Does "git push" not go to Heroku?  Nope, but "git push heroku
+master" does.
