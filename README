@@ -63,6 +63,14 @@ That's it!  Go to http://myappname.heroku.com or whatever your
 actual Heroku app name is.  You should see your new portfolio,
 accessible to all on the big ol' Internet.  Welcome to the future.
 
+WHERE DO FILES GO?
+
+You can link to sites, images and whatnot in exactly the way you're
+used to.  Or you can put your own files under the public directory in
+Bobfolio and then link to them there.  For instance, an image you put
+into public/images/cat.jpg could be linked as /images/cat.jpg from
+your HTML.
+
 TROUBLESHOOTING
 
 * Did you have trouble with Heroku accepting your ssh key?  Run
