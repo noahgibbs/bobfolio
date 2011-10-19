@@ -2,6 +2,12 @@
 
 require "sinatra"
 
+# See how you can change your name and modify your top-of-page
+# link text here?  That'll get you started...
+#
+# After that, page to the bottom of views/index.erb to actually add
+# all your portfolio entries!
+
 MY_NAME = "Bob Robertson"
 LINK_TEXT = <<LINK_TEXT
   Add Links to GitHub, LinkedIn or

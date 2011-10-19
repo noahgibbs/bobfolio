@@ -25,7 +25,19 @@ web server, and reload the web server every time you change the code
 (convenient!).
 
 Next, point a web browser at "http://localhost:4567" to see what your
-server shows.  Edit index.html.erb until you like what you see.
+server shows.  Edit bobfolio.rb to include your correct name and the
+right link text in those variables up at the top.  Hit reload in your
+browser, and you should see the right name in the title, and the right
+text up top.
+
+Finally, go to the bottom of views/index.erb, a file of HTML and
+JavaScript.  See all those divs?  Those get automatically displayed
+with all the rounded corners and whatnot and the nifty filtering
+you're seeing.  Just add more divs!
+
+Every div should be tagged as either "professional" or "personal" or
+it won't show up!  All the other classes you give a div turn into
+the smaller buttons to sort by category.
 
 DEPLOYING BOBFOLIO:
 
