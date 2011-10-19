@@ -7,7 +7,7 @@ First, install git.  On Ubuntu that's something like "apt-get install
 git-core".  On Mac, you've probably already got it, or you can install
 it through MacPorts, Fink, Homebrew or whatever.
 
-Next, "git clone git://github.com/noahgibbs/bobfolio.git".  That will
+Next, "git clone git://github.com/noahgibbs/bobfolio.git ".  That will
 make a bobfolio directory for you to edit your new copy.
 
 You'll need to install Ruby.  If you install Ruby 1.8.X instead of
@@ -24,7 +24,7 @@ From the command line, type "rerun ruby bobfolio.rb".  That will load a
 web server, and reload the web server every time you change the code
 (convenient!).
 
-Next, point a web browser at "http://localhost:4567" to see what your
+Next, point a web browser at http://localhost:4567 to see what your
 server shows.  Edit bobfolio.rb to include your correct name and the
 right link text in those variables up at the top.  Hit reload in your
 browser, and you should see the right name in the title, and the right
