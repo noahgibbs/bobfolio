@@ -20,7 +20,7 @@ Afterward, you'll need to install other gems:
 
 RUNNING BOBFOLIO:
 
-From the command line, type "rerun ./bobfolio.rb".  That will load a
+From the command line, type "rerun ruby bobfolio.rb".  That will load a
 web server, and reload the web server every time you change the code
 (convenient!).
 
