@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta name="description" content="A portfolio of programming and technical projects, professional and not, by <%= MY_NAME %>" />
+  <meta name="keywords" content="portfolio, programming, <%= MY_NAME %>" />
+  <link href="portfolio.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/fancybox/jquery.fancybox-1.3.1.css" media="screen" rel="stylesheet" type="text/css" />
+  <script type="text/javascript"
+    src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">
+  </script>
+  <script type="text/javascript" src="/javascripts/curvycorners.js"></script>
+  <script type="text/javascript" src="/javascripts/jquery.ba-hashchange.min.js"> </script>
+  <script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
+  <script type="text/javascript" src="/fancybox/jquery.easing-1.3.pack.js"></script>
+  <script type="text/javascript" src="/fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
+  <title> <%= MY_NAME %>'s Programming Portfolio </title>
+</head>
+<body>
+
+<p class="disclaimer">
+  Link to GitHub, LinkedIn or whatever makes you look good here!
+</p>
+
+<script type="text/javascript">
+function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function show_elts(elts) {
+  elts.filter(":hidden").animate({height: 'show'});
+}
+
+function hide_elts(elts) {
+  elts.filter(":visible").animate({height: 'hide'});
+}
+
+jQuery.fn.getAllClasses = function() {
+  var classes_hash = {};
+  this.each(function() {
+    var classes_str = $(this).attr("class");
+    var classes = classes_str.split(" ");
+    for(var i = 0; i < classes.length; i++) {
+      classes_hash[classes[i]] = 1;
+    }
+  });
+  return classes_hash;
+}
+
+var last_selected = "nobody_at_all";
+var last_tag_selected = "nobody_at_all";
+var tags_shown = {};
+var project_fields = {organization:1, description:1, tools:1, role:1,
+                      dates:1, pictures:1};
+
+function radio_div_click(radio_div) {
+  var new_selected = radio_div.attr("id");
+  if(new_selected == last_selected) return;
+
+  $(".buttonbox").animate({top: "+=10"}, 100).animate({top: "-=10"}, 100);
+
+  $("body").removeClass("b_professional b_personal").
+    addClass("b_" + new_selected);
+  $("#professional, #personal").removeClass("selected");
+  radio_div.addClass("selected");
+
+  hide_elts($("." + last_selected));
+
+  last_tag_selected = "nobody_at_all";
+  last_selected = new_selected;
+  var projects_to_show = $('.' + last_selected);
+  show_elts(projects_to_show);
+
+  $("#tagbox div").remove();
+  tags_shown = projects_to_show.getAllClasses();
+  delete tags_shown.professional;
+  delete tags_shown.personal;
+  delete tags_shown.curved;
+  delete tags_shown.shadow;
+  delete tags_shown.selected;
+
+  $('<a href="#' + last_selected +
+    '/all"><div class="radio_tag_div shadow selected ' + last_selected +
+    '_gradient" id="' + last_selected +
+    '_all">all</div></a>').appendTo("#tagbox");
+  for(var tag in tags_shown) {
+    $('<a href="#' + last_selected + '/' + tag +
+      '"><div id="' + last_selected + '_' + tag +
+      '" class="radio_tag_div shadow ' + last_selected + '_gradient">' +
+      tag + "</div></a>").appendTo("#tagbox");
+  }
+}
+
+function radio_tag_div_click(radio_tag_div) {
+  var new_selected = radio_tag_div.attr("id");
+  if(new_selected == last_tag_selected) return;
+
+  $("#tagbox").animate({top: "+=10"}, 'fast').animate({top: "-=10"}, 'fast');
+
+  var text = radio_tag_div.html();
+  var elts = $("." + last_selected);
+  var sub_elts;
+  var not_sub_elts;
+
+  if(text == "all") {
+    sub_elts = elts;
+    not_sub_elts = elts.filter(".no_such_class");  // empty
+  } else {
+    sub_elts = elts.filter("." + text);
+    not_sub_elts = elts.filter(":not(." + text + ")");
+  }
+
+  $(".radio_tag_div").removeClass("selected");
+  radio_tag_div.addClass("selected");
+
+  hide_elts(not_sub_elts);
+  show_elts(sub_elts);
+}
+
+$(function() {
+  all_projects = $(".professional,.personal");
+  all_projects.hide().addClass("curved shadow");
+  $(".radio_div").addClass("curved shadow");
+
+  // Replace every project div with a templatized version
+  all_projects.each(function() {
+    field_objs = {};
+    for(var field in project_fields) {
+      field_objs[field] = $(this).find("." + field).remove();
+    }
+    $(this).html($("#template").html());
+    for(var field in project_fields) {
+      var spot = $(this).find("." + field + "_here");
+      field_objs[field].appendTo(spot);
+    }
+  });
+  $(".pictures").each(function() {
+    $(this).html("<div class='picture_frame'>" + $(this).html() + "</div>");
+  });
+
+  for(var tag in project_fields) {
+    $("." + tag).each(function() {
+      $(this).prepend($('<span class="label_type">' +
+                         capitalize(tag) + ':' + '</span>'));
+    });
+  }
+
+  $("img").addClass("shadow");
+
+  $(window).bind( 'hashchange', function() {
+    spot = location.hash;
+    if(spot == "") { spot = "#professional/all"; }
+
+    tags = spot.split("/", 2);
+    radio_div_click($(tags[0]));  // Tags[0] automatically gets leading "#"
+    radio_tag_div_click($(tags[0] + "_" + tags[1]));
+  });
+
+  $(".fancybox").fancybox({ hideOnContentClick: true });
+  $(".fancybox_iframe").fancybox({
+    hideOnContentClick: true,
+    type: 'iframe'
+  });
+
+  $(window).trigger('hashchange');
+});
+</script>
+
+<div class="buttonbox">
+  <a href="#professional/all"><div id="professional" class="radio_div">Professional</div></a>
+  <a href="#personal/all"><div id="personal" class="radio_div">Personal</div></a>
+</div>
+<div id="tagbox"> </div> <!-- For sub-buttons -->
+
+<div id="template" class="hidden">
+  <table>
+    <tr>
+      <td> <div class="dates_here"></div> </td>
+      <td colspan="2"> <div class="description_here"> </div> </td>
+    </tr>
+    <tr>
+      <td> <div class="tools_here"> </div> </td>
+      <td> <div class="role_here"> </div> </td>
+      <td> <div class="organization_here"> </div> </td>
+    </tr>
+  </table>
+  <div class="pictures_here"> </div>
+</div>
+
+<div class="professional rails">
+  <div class="dates"> 2011 </div>
+  <div class="organization"> <a href="http://ooyala.com">Ooyala</a> </div>
+  <div class="description"> Ooyala's Backlot </div>
+  <div class="tools"> Ruby on Rails, SCSS, git </div>
+  <div class="role"> Analytics Engineer </div>
+  <div class="pictures">
+    <a class="fancybox" href="ooyala-backlot-analytics-1.png">
+      <img src="ooyala-backlot-analytics-1.png" alt="Ooyala Backlot 1" /> </a>
+    <a class="fancybox" href="ooyala-backlot-2.jpg">
+      <img src="ooyala-backlot-2.jpg" alt="Ooyala Backlot 2" /> </a>
+  </div>
+</div>
+
+<div class="personal student c">
+  <div class="dates"> 1998? </div>
+  <div class="organization"> A class at
+    <a href="http://www.cmu.edu">Carnegie Mellon University</a>
+    </div>
+  <div class="description"> Parallel raytracer for computer science
+    class.  Code by request </div>
+  <div class="tools"> C, Linux, PNM </div>
+  <div class="role"> Author;  server author for distributed version </div>
+  <div class="pictures"> <a href="reflroom.png" class="fancybox">
+    <img src="reflroom.png" /></a> </div>
+</div>
+
+</body>
