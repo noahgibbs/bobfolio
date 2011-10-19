@@ -2,5 +2,8 @@ source :rubygems
 
 gem "erubis"
 gem "sinatra"
-gem "heroku"
-gem "rerun"
+
+group :development do
+  gem "heroku"
+  gem "rerun"
+end
