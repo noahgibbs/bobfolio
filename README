@@ -1,0 +1,50 @@
+Bobfolio is a simple attempt to trim down my personal portfolio and
+convert it into a little Sinatra web app for easy use with Heroku.
+
+INSTALLING BOBFOLIO:
+
+First, install git.  On Ubuntu that's something like "apt-get install
+git-core".  On Mac, you've probably already got it, or you can install
+it through MacPorts, Fink, Homebrew or whatever.
+
+Next, "git clone git://github.com/noahgibbs/bobfolio.git".  That will
+make a bobfolio directory for you to edit your new copy.
+
+You'll need to install Ruby.  If you install Ruby 1.8.X instead of
+1.9.X, you'll also need to install RubyGems.
+
+Afterward, you'll need to install other gems:
+
+  gem install bundler
+  bundle install
+
+RUNNING BOBFOLIO:
+
+From the command line, type "rerun ./bobfolio.rb".  That will load a
+web server, and reload the web server every time you change the code
+(convenient!).
+
+Next, point a web browser at "http://localhost:4567" to see what your
+server shows.  Edit index.html.erb until you like what you see.
+
+DEPLOYING BOBFOLIO:
+
+Sign up for a (free) account with Heroku.com.  Next, create a Heroku
+app:
+
+  heroku create myappname
+
+Heroku will ask you for your name and password the first time you run
+a command, and will remember your SSH keys so you can upload code to
+this app again later.  It may take a try or three before your app name
+isn't taken.  You can also just "heroku create" to create a new
+randomized app name.  Don't do that for your portfolio, because a
+randomized app name will be hard to remember and sound kind of dumb.
+
+Now deploy to heroku:
+
+  git push heroku master
+
+That's it!  Go to "http://myappname.heroku.com" or whatever your
+actual Heroku app name is.  You should see your new portfolio,
+accessible to all on the big ol' Internet.  Welcome to the future.
