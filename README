@@ -1,19 +1,24 @@
-Bobfolio is a simple Sinatra web app for your computer programming
+Bobfolio is a simple Ruby web app for your computer programming
 portfolio.  You can deploy it to Heroku and have a free portfolio up
 and running within about 15 minutes if installing Ruby goes well.
+
+You should be able to use Bobfolio with minimal Ruby knowledge, or
+just a bit of knowledge about any similar scripting language like
+JavaScript, Perl or Python.  You're not writing code, just putting
+together some data.
 
 INSTALLING BOBFOLIO:
 
 First, install git.  On Ubuntu that's something like "apt-get install
 git-core".  On Mac, you've probably already got it, or you can install
-it through MacPorts, Fink, Homebrew or whatever.
+it through MacPorts, Fink, Homebrew or another package manager.
 
 Next, "git clone git://github.com/noahgibbs/bobfolio.git ".  That will
-make a bobfolio directory for you to edit your new copy.
+copy bobfolio into a directory for you to edit.
 
-You'll need to install Ruby.  If you install Ruby 1.8.X instead of
-1.9.X, you'll also need to install RubyGems.  (How do you install
-Ruby?  Google something like "install ruby MyOperatingSystem")
+You may need to install Ruby.  If you install Ruby 1.8.X instead of
+1.9.X, you may also need to install RubyGems.  (How do you install
+Ruby?  Google something like "install ruby windows")
 
 Afterward, you can use those to install other requirements:
 
@@ -22,28 +27,33 @@ Afterward, you can use those to install other requirements:
 
 RUNNING BOBFOLIO:
 
-From the command line, type "rerun ruby bobfolio.rb".  That will load a
-web server, and reload the web server every time you change the code
-(convenient!).
+From the command line, type "bundle exec rerun ruby bobfolio.rb".
+That will load a web server, and reload the web server every time you
+change the code (convenient!).
 
 Next, point a web browser at http://localhost:4567 to see what your
-server shows.  Edit bobfolio.rb to include your correct name and the
-right link text in those variables up at the top.  Hit reload in your
-browser, and you should see the right name in the title, and the right
-text up top.
+server shows.
 
-Finally, go to the bottom of views/index.erb, a file of HTML and
-JavaScript.  See all those divs?  Those get automatically displayed
-with all the rounded corners and whatnot and the nifty filtering
-you're seeing.  Just add more divs!
+EDITING BOBFOLIO
 
-Every div should be tagged as either "professional" or "personal" or
-it won't show up!  All the other classes you give a div turn into
-the smaller buttons to sort by category.
+Edit bobfolio.rb to include your correct name and the right link text
+in those variables up at the top.  Hit reload in your browser, and you
+should see the right name in the title, and the right text up top.
+
+Finally, look later in bobfolio.rb.  See ENTRIES?  Those get
+automatically turned into the big blocks in your portfolio.
+Cut-and-paste to add more entries to both the personal and
+professional sections.
+
+If you have any problems with the server not loading, check your
+syntax.  There's a brief summary of Ruby strings in the file, and you
+can find any unusual information pretty quickly using Google.  ENTRIES
+is just an array of hash tables, very similar to how it's written in
+most other scripting languages (JavaScript, Perl, Python, etc).
 
 DEPLOYING BOBFOLIO:
 
-Sign up for a (free) account with Heroku.com.  Next, create a Heroku
+Sign up for a free account with Heroku.com.  Next, create a Heroku
 app:
 
   heroku create myappname
@@ -65,16 +75,37 @@ accessible to all on the big ol' Internet.  Welcome to the future.
 
 WHERE DO FILES GO?
 
-You can link to sites, images and whatnot in exactly the way you're
-used to.  Or you can put your own files under the public directory in
-Bobfolio and then link to them there.  For instance, an image you put
-into public/images/cat.jpg could be linked as /images/cat.jpg from
-your HTML.
+You can link to sites, images and whatnot with <a href="">, <img> and
+so on, just like you're used to.  Or you can put your own files under
+the public directory in Bobfolio and then link to them there.  For
+instance, an image you put into public/images/cat.jpg could be linked
+as /images/cat.jpg from HTML in your ENTRIES.
+
+DO I HAVE TO USE HEROKU?
+
+Not really, no.  That's just far and away the easiest way to get your
+portfolio up and running.  You could run your own server or use
+different hosting and it would work just fine.  You can't just run
+plain Apache because you need to execute Ruby code, but you could use
+Apache and Passenger if you wanted, or any other Ruby-capable app
+server (Mongrel, Thin, Lighttp, Unicorn, WEBrick, etc).
+
+Similarly, the Sinatra library is very easy to use, and you could make
+a *much* more complicated portfolio than this if you wanted.  This is
+just a very simple one to get you started.
 
 TROUBLESHOOTING
 
 * Did you have trouble with Heroku accepting your ssh key?  Run
 "heroku keys:add", then try it again.
 
-* Does "git push" not go to Heroku?  Nope, but "git push heroku
-master" does.
+* Why doesn't "git push" go to Heroku?  You didn't clone from Heroku
+originally.  But "git push heroku master" goes to Heroku, so use that.
+
+* Having trouble with "bundle install"?  Make sure to run the server
+using "bundle exec".  If worst comes to worst you can actually debug
+by just pushing to heroku repreatedly, though it's easier if you can
+see the error messages locally.
+
+* Getting error pages from heroku?  Try running "heroku logs" to get
+recent error logs and see if you can find the problem.
