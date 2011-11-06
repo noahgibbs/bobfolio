@@ -25,11 +25,19 @@ Afterward, you can use those to install other requirements:
   gem install bundler
   bundle install
 
-RUNNING BOBFOLIO:
+RUNNING BOBFOLIO ON MAC OS X OR LINUX
 
 From the command line, type "bundle exec rerun ruby bobfolio.rb".
 That will load a web server, and reload the web server every time you
 change the code (convenient!).
+
+Next, point a web browser at http://localhost:4567 to see what your
+server shows.
+
+RUNNING BOBFOLIO ON WINDOWS
+
+On Windows, type "bundle exec ruby bobfolio.rb".  That will load a web
+server.  You'll have to restart it when you change your code.
 
 Next, point a web browser at http://localhost:4567 to see what your
 server shows.
