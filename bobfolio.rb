@@ -35,13 +35,16 @@ ENTRIES = [
     :description => "LolCRM, very Enterprisey!",
     :tools => "Lolcode, C++, Rational Rose, darcs",
     :role => "Senior Ceiling Engineer",
-    :pictures => <<PICTURES,
-  <a class="fancybox" href="http://scienceblogs.com/gregladen/images/LOLcode_book.jpg">
-    <img src="http://scienceblogs.com/gregladen/images/LOLcode_book.jpg" alt="LolCRM 1" /> </a>
-  <a class="fancybox" href="http://beerpla.net/wp-content/uploads/TheUltimatePunProgrammingInLOLCODE_11173/image.png">
-    <img src="http://beerpla.net/wp-content/uploads/TheUltimatePunProgrammingInLOLCODE_11173/image.png" alt="LOLCrm 2" />
-  </a>
-PICTURES
+    :pictures => [
+      {
+        :image_url => "http://scienceblogs.com/gregladen/images/LOLcode_book.jpg",
+        :alt_text => "LOLCrm 1",
+      },
+      {
+        :image_url => "http://beerpla.net/wp-content/uploads/TheUltimatePunProgrammingInLOLCODE_11173/image.png",
+        :alt_text => "LOLCrm 2",
+      },
+    ],
   },
   {
     :professional => true,
@@ -51,10 +54,12 @@ PICTURES
     :description => "Management Manager Time Manager",
     :tools => 'Ruby, XML, <a href="https://github.com/tenderlove/enterprise">Ruby Enterprise</a>, ClearCase',
     :role => "Enterprise Finagler and Enterpriser",
-    :pictures => <<PICTURES,
-    <a class="fancybox" href="http://onproductmanagement.files.wordpress.com/2007/06/what-enterprise-software-delivers.jpg">
-      <img src="http://onproductmanagement.files.wordpress.com/2007/06/what-enterprise-software-delivers.jpg" alt="Enterprise Pyramid" /> </a>
-PICTURES
+    :pictures => [
+      {
+        :image_url => "http://onproductmanagement.files.wordpress.com/2007/06/what-enterprise-software-delivers.jpg",
+        :alt_text => "Enterprise Pyramid",
+      },
+    ],
   },
   {
     :professional => false,
@@ -64,10 +69,12 @@ PICTURES
     :description => "Parallel Artificial Intelligence Monads for Bovik-Tetizu Network Architectures, A Love Story",
     :tools => "AcademiaLISP, SML/NJ",
     :role => "Author",
-    :pictures => <<PICTURES,
-    <a href="http://static.lulu.com/product/paperback/sigbovik-2009/6522581/thumbnail/320" class="fancybox">
-      <img src="http://static.lulu.com/product/paperback/sigbovik-2009/6522581/thumbnail/320" /></a>
-PICTURES
+    :pictures => [
+      {
+        :image_url => "http://static.lulu.com/product/paperback/sigbovik-2009/6522581/thumbnail/320",
+        :alt_text => "SIGBovik, a Respectable Institution",
+      },
+    ],
   },
 
 ]

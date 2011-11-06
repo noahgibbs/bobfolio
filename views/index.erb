@@ -193,9 +193,16 @@ $(function() {
 
 <% ENTRIES.each do |entry| %>
   <div class="<%= entry[:professional] ? "professional" : "personal" %> <%= entry[:tags].join(" ") %>">
-    <% [:dates, :organization, :description, :tools, :role, :pictures].each do |tag| %>
+    <% [:dates, :organization, :description, :tools, :role].each do |tag| %>
       <% if entry[tag] %> <div class="<%= tag %>"> <%= entry[tag] %> </div> <% end; end %>
-</div>
+
+    <div class="pictures">
+      <% entry[:pictures].each do |hash| %>
+        <a class="fancybox" href="<%= hash[:image_url] %>" alt="<%= hash[:alt_text] || "Screenshot" %>">
+          <img src="<%= hash[:thumbnail_url] || hash[:image_url] %>" /> </a>
+      <% end %>
+    </div>
+  </div>
 <% end %>
 
 </body>
